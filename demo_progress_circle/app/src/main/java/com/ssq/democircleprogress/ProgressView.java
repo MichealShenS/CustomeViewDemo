@@ -122,4 +122,46 @@ public class ProgressView extends View {
             }
         }
     };
+
+    /**
+     * MeasureSpec.EXACTLY：已经为View指定确定尺寸或者为math_parent时
+     * MeasureSpec.AT_MOST：当View为wrap_content时
+     * MeasureSpec.UNSPECIFIED：View未定义宽高
+     */
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int width = measureWidth(widthMeasureSpec);
+        int height = measureHeight(heightMeasureSpec);
+        setMeasuredDimension(width, height);
+    }
+
+
+    private int measureWidth(int widthMeasureSpec) {
+        int mode = MeasureSpec.getMode(widthMeasureSpec);
+        int size = MeasureSpec.getSize(widthMeasureSpec);
+        int width = 0;
+        if (mode == MeasureSpec.EXACTLY) {
+            //如果是math_parent或确定尺寸
+            width = size;
+        } else if (mode == MeasureSpec.AT_MOST) {
+            //如果是wrap_parent
+            width = getPaddingLeft() + 310 + getPaddingRight();
+        }
+        return width;
+    }
+
+    private int measureHeight(int heightMeasureSpec) {
+        int mode = MeasureSpec.getMode(heightMeasureSpec);
+        int size = MeasureSpec.getSize(heightMeasureSpec);
+        int height = 0;
+        if (mode == MeasureSpec.EXACTLY) {
+            //如果是math_parent或确定尺寸
+            height = size;
+        } else if (mode == MeasureSpec.AT_MOST) {
+            //如果是wrap_parent
+            height = getPaddingTop() + 310 + getPaddingBottom();
+        }
+        return height;
+    }
 }

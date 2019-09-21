@@ -6,9 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.ssq.democircleprogress.ProgressView
-        android:id="@+id/progressView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints">
+
+        <com.ssq.democircleprogress.ProgressView
+            android:id="@+id/progressView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
